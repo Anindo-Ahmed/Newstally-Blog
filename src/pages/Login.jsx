@@ -5,6 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useContext } from "react";
 import { toast } from "react-hot-toast";
 
+
 const Login = () => {
     const {user, userLogin, googleLogin} = useContext(AuthContext);
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Login = () => {
     const handleGoogleLogin = async() => {
         try{
             await googleLogin();
-            toast.success("Signin Sucessfull");
+            toast.success('Signin Successfull')
             navigate('/');
 
         } catch (error){
