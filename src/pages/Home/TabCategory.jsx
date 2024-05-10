@@ -14,7 +14,7 @@ const TabCategory = ({blogs}) => {
         <div className="flex justify-center items-center my-8 ">
           <TabList>
             <Tab>Sports</Tab>
-            <Tab>Life Style</Tab>
+            <Tab>Lifestyle</Tab>
             <Tab>Business</Tab>
           </TabList>
         </div>

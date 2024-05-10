@@ -1,5 +1,5 @@
 const CategoryCard = ({ blog }) => {
-  const { title, category, photo_url, short_description, long_description } =
+  const { title, category, photo, short_description, long_description } =
     blog;
 
   return (
@@ -9,12 +9,12 @@ const CategoryCard = ({ blog }) => {
         <div>
           <img
             className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
-            src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+            src={photo}
             alt=""
           />
 
           <div className="mt-8">
-            <span className="text-gray-500 text-sm border rounded-full bg-violet-100 p-2">
+            <span className="text-gray-500 text-sm border rounded-full bg-violet-100 px-4 py-1">
               {category}
             </span>
 

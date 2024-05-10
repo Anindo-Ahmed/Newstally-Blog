@@ -5,9 +5,10 @@ const Newsletter = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const email = e.target.email.value;
-        console.log(email)
+        console.log(email,'Successfull')
         toast.success("Thank you for subscribing to our newsletter")
     }
+    
   return (
     <header className="bg-white container lg:px-20 mx-auto">
       <div className="container px-6 py-16 mx-auto">
