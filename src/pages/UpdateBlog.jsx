@@ -1,3 +1,4 @@
+import bgimg from "../assets/image/layered-steps-haikei.svg"
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useLoaderData } from "react-router-dom";

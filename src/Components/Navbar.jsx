@@ -25,7 +25,10 @@ const Navbar = () => {
         <div className='flex-none'>
           <ul className='menu menu-horizontal px-1'>
             <li>
-              <Link>Home</Link>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+                <Link>All Blogs</Link>
             </li>
             {!user && (
             <li>
@@ -57,7 +60,7 @@ const Navbar = () => {
                 <Link to='/add-blog' className='justify-between'>Add Blog</Link>
               </li>
               <li>
-                <Link>All Blogs</Link>
+                <Link to='/my-blog'>My Blogs</Link>
               </li>
               <li>
                 <Link to='/featured-blog'>Featured Blogs</Link>

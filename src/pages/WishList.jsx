@@ -14,12 +14,12 @@ const WishList = () => {
 
   const getData = async () => {
     const { data } = await axios(
-      `http://localhost:5000/wishlist-blog/${user.email}`
+      `http://localhost:5000/wishlist-blog/${user?.email}`
     );
     setWishListData(data);
-    console.log(data);
+    // console.log(data);
   };
-  console.log(wishListData);
+//   console.log(wishListData);
 
   const handleDelete = async (id) => {
     try {
@@ -40,7 +40,7 @@ const WishList = () => {
       <div className="container md:px-3 px-20 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {wishListData.map((wishList) => (
-            <div>
+            <div key={wishList._id}>
               <img
                 className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
                 src={wishList.photo}
@@ -66,7 +66,7 @@ const WishList = () => {
                       Details
                     </button>
                     <button
-                      onClick={() => handleDelete(_id)}
+                      onClick={() => handleDelete(wishList._id)}
                       className="px-4 py-2 text-sm font-medium transition-colors duration-200 sm:text-base sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110"
                     >
                       Remove Wishlist
