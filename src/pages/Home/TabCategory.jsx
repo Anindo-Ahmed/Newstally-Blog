@@ -8,7 +8,7 @@ const TabCategory = ({blogs}) => {
     <Tabs className="text-center my-28">
       <div className="container px-6 mx-auto">
         <h2 className="text-4xl font-lato font-semibold text-gray-800 mt-12">
-          Blogs Category
+          Your Favourite Blogs
         </h2>
         
         <div className="flex justify-center items-center my-8 ">

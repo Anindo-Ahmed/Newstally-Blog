@@ -5,6 +5,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddBlog from "../pages/Home/AddBlog";
+import UpdateBlog from "../pages/UpdateBlog";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
         {
           path: '/add-blog',
           element: <AddBlog></AddBlog>
+        },
+        {
+          path: '/update/:id',
+          element: <UpdateBlog></UpdateBlog>,
+          loader: ({params}) => fetch(`http://localhost:5000/blogs/${params.id}`)
         }
       ]
     },

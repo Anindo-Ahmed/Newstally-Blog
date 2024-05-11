@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className='navbar bg-base-100 shadow-sm container px-20 mx-auto'>
         <div className='flex-1'>
           <div className='flex gap-2 items-center'>
-            <img className='w-auto h-7' src={logo} alt='' />
+            <img className='w-auto h-9' src={logo} alt='' />
             <span className='font-bold'>NewsTally</span>
           </div>
         </div>
