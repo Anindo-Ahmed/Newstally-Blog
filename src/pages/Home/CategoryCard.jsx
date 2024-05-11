@@ -1,7 +1,23 @@
+import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+
 const CategoryCard = ({ blog }) => {
+  const {user} = useContext(AuthContext);
   const { title, category, photo, short_description, long_description } =
     blog;
 
+    const handleAddToWishList = () => {
+      const wishListData = {
+        title, category, photo, short_description, long_description, user
+      };
+      
+      axios.post('http://localhost:5000/wishlist-blog', wishListData)
+      .then(res => console.log('Blog added to wishlist', res.data))
+      .catch (error => console.log(error.message))     
+    };
+
+    
   return (
     <section className="bg-white">
       <div className="container md:px-3 mx-auto">
@@ -29,7 +45,7 @@ const CategoryCard = ({ blog }) => {
                 <button className="px-4 py-2 text-sm font-medium transition-colors duration-200 sm:text-base sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110">
                   Details
                 </button>
-                <button className="px-4 py-2 text-sm font-medium transition-colors duration-200 sm:text-base sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110">
+                <button onClick={handleAddToWishList} className="px-4 py-2 text-sm font-medium transition-colors duration-200 sm:text-base sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110">
                   Wishlist
                 </button>
               </div>

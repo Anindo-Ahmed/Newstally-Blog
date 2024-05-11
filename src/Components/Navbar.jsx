@@ -60,10 +60,10 @@ const Navbar = () => {
                 <Link>All Blogs</Link>
               </li>
               <li>
-                <Link>Featured Blogs</Link>
+                <Link to='/featured-blog'>Featured Blogs</Link>
               </li>
               <li>
-                <Link>Wishlist</Link>
+                <Link to='/wishlist-blog'>Wishlist</Link>
               </li>
               <li className='mt-2'>
                 <button onClick={handleLogOut} className='bg-gray-200 block text-center'>Logout</button>
