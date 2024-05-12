@@ -11,7 +11,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <div className="container px-4 lg:px-20 mx-auto">
-                <h2 className="text-2xl font-semibold">On the Spot</h2>
+                <h2 className="text-2xl font-semibold">Favourite Blogs</h2>
                 <hr className="border-b-violet-400 border-b-4 mb-3 w-1/6"/>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 container px-4 lg:px-20 mx-auto">

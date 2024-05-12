@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const CategoryCard = ({ blog }) => {
   const {user} = useContext(AuthContext);
@@ -45,9 +46,11 @@ const CategoryCard = ({ blog }) => {
                 <button className="px-4 py-2 text-sm font-medium transition-colors duration-200 sm:text-base sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110">
                   Details
                 </button>
+                <Link to='/wishlist-blog'>
                 <button onClick={handleAddToWishList} className="px-4 py-2 text-sm font-medium transition-colors duration-200 sm:text-base sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110">
                   Wishlist
                 </button>
+                </Link>
               </div>
             </div>
           </div>

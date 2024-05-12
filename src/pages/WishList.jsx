@@ -19,7 +19,7 @@ const WishList = () => {
     setWishListData(data);
     // console.log(data);
   };
-//   console.log(wishListData);
+  //   console.log(wishListData);
 
   const handleDelete = async (id) => {
     try {
@@ -37,8 +37,12 @@ const WishList = () => {
 
   return (
     <section className="bg-white my-12">
-      <div className="container md:px-3 px-20 mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="container px-4 lg:px-20 mx-auto">
+        <h2 className="text-2xl font-semibold">My WishLists</h2>
+        <hr className="border-b-violet-400 border-b-4 mb-3 w-1/6" />
+      </div>
+      <div className="">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 container md:px-3 px-20 mx-auto">
           {wishListData.map((wishList) => (
             <div key={wishList._id}>
               <img
