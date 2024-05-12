@@ -4,22 +4,37 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { data } from "autoprefixer";
 import useAuth from "../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const MyBlogs = () => {
   const { user } = useAuth();
-  const [blogs, setBlogs] = useState([]);
+  // const [blogs, setBlogs] = useState([]);
 
-  useEffect(() => {
-    getData();
-  }, []);
+  const {
+    data: blogs = [],
+    isLoading,
+    refetch
+  } = useQuery({
+    queryFn: () => getData(),
+    queryKey: [ 'blog', 'user?.email']
+  })
+  console.log(isLoading)
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   const getData = async () => {
     const { data } = await axios(`http://localhost:5000/blog/${user?.email}`,
     { withCredentials: true});
-    setBlogs(data);
-    console.log(data);
+    return data;
   };
-
+  // const getData = async () => {
+  //   const { data } = await axios(`http://localhost:5000/blog/${user?.email}`,
+  //   { withCredentials: true});
+  //   setBlogs(data);
+  //   console.log(data);
+  // };
+  if(isLoading) return <p>Loading ...</p>
   return (
     <section className="container px-4 mx-auto pt-12 my-12">
       <div className="flex items-center gap-x-3">
