@@ -3,9 +3,10 @@ import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { data } from "autoprefixer";
+import useAuth from "../hooks/useAuth";
 
 const MyBlogs = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ const MyBlogs = () => {
   }, []);
 
   const getData = async () => {
-    const { data } = await axios(`http://localhost:5000/blog/${user.email}`,
+    const { data } = await axios(`http://localhost:5000/blog/${user?.email}`,
     { withCredentials: true});
     setBlogs(data);
     console.log(data);

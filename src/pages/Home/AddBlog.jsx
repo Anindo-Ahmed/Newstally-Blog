@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import bgimg from "../../assets/image/layered-steps-haikei.svg"
-import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const AddBlog = () => {
-    const {user} = useContext(AuthContext);
+    const {user} = useAuth();
     const navigate = useNavigate();
 
     const handleFormSubmission = async e => {
