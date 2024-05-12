@@ -1,12 +1,11 @@
-import { useLoaderData } from "react-router-dom";
-import DataTable from "../Components/Datatables";
+import DataTables from "../Components/Datatables";
 
 
 const FeaturedBlog = () => {
 
   return (
     <div>
-      <DataTable/>
+      <DataTables/>
     </div>
   );
 };

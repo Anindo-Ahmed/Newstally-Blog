@@ -63,7 +63,7 @@ const DataTables = () => {
       <DataTable
         title="Top Featured Blogs"
         columns={columns}
-        data={blogs}
+        data={blogs.slice(0, 10)}
         highlightOnHover
         striped
         // pagination

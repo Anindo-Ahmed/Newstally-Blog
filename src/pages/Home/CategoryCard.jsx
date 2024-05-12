@@ -31,7 +31,8 @@ const CategoryCard = ({ blog }) => {
           />
 
           <div className="mt-8">
-            <span className="text-gray-500 text-sm border rounded-full bg-violet-100 px-4 py-1">
+            <span className={`text-gray-700 text-sm border px-4 py-1 rounded-full
+            ${category === 'Sports' && 'bg-violet-200'} ${category === 'Lifestyle' && 'bg-pink-200'} ${category === 'Business' && 'bg-blue-200'} `}>
               {category}
             </span>
 
