@@ -2,13 +2,15 @@ import { Link } from "react-router-dom";
 import logo from "../assets/image/logo.jpeg"
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import axios from "axios";
 
 const Navbar = () => {
     const {user, logOut} = useContext(AuthContext);
 
     const handleLogOut = async () => {
         try{
-            logOut();
+            await logOut();
+            await axios ('http://localhost:5000/logout', {withCredentials: true})
         } catch (error){
             console.log(error);
         }

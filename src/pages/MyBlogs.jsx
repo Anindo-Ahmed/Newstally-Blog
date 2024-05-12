@@ -13,7 +13,8 @@ const MyBlogs = () => {
   }, []);
 
   const getData = async () => {
-    const { data } = await axios(`http://localhost:5000/blog/${user.email}`);
+    const { data } = await axios(`http://localhost:5000/blog/${user.email}`,
+    { withCredentials: true});
     setBlogs(data);
     console.log(data);
   };

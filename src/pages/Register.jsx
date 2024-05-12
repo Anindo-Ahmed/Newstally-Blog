@@ -4,6 +4,7 @@ import registerImg from "../assets/image/register.jpg";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 
 
 
@@ -16,7 +17,10 @@ const Register = () => {
     // Google login
     const handleGoogleLogin = async() => {
         try {
-            await googleLogin();
+            const result = await googleLogin();
+            const { data } = await axios.post('http://localhost:5000/jwt',
+            { email: result?.user?.email },
+            { withCredentials: true })
             toast.success("Signup Sucessfull");
             navigate(from, {replace : true});
 
@@ -42,7 +46,10 @@ const Register = () => {
             const result = await createUser(email, password);
             console.log(result)
             await updateUserProfile(name, photo)
-            setUser({ ...user, photoURL: photo, displayName: name })
+            setUser({ ...result?.user, photoURL: photo, displayName: name })
+            const { data } = await axios.post('http://localhost:5000/jwt',
+            { email: result?.user?.email },
+            { withCredentials: true })
             toast.success("Signup Sucessfull");
             navigate(from, {replace : true});
         } catch (error){

@@ -28,7 +28,8 @@ const UpdateBlog = () => {
         console.log(blogData)
 
         try{
-            const {data} = await axios.put(`http://localhost:5000/blogs/${_id}`, blogData)
+            const {data} = await axios.put(`http://localhost:5000/blogs/${_id}`, blogData 
+            )
             console.log(data)
             toast.success('Successfully added')
         }catch (error) {

@@ -1,50 +1,59 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/image/logo.jpeg";
-import login from "../assets/image/login.jpg"
+import login from "../assets/image/login.jpg";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useContext } from "react";
 import { toast } from "react-hot-toast";
-
+import axios from "axios";
+import { linkWithCredential } from "firebase/auth";
 
 const Login = () => {
-    const {user, userLogin, googleLogin} = useContext(AuthContext);
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state || '/'
-    // Google login
-    const handleGoogleLogin = async() => {
-        try{
-            await googleLogin();
-            toast.success('Signin Successfull')
-            navigate(from, {replace : true});
-
-        } catch (error){
-            console.log(error);
-            toast.error(error?.message);
-        }
+  const { user, userLogin, googleLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || "/";
+  // Google login
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await googleLogin();
+      console.log(result.user);
+      const { data } = await axios.post(
+        "http://localhost:5000/jwt",
+        { email: result?.user?.email },
+        { withCredentials: true }
+      );
+      toast.success("Signin Successfull");
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.message);
     }
+  };
 
-    // Email login
-    const handleLogin = async e => {
-        e.preventDefault();
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
+  // Email login
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
-        const newUser = {email, password};
+    const newUser = { email, password };
 
-        try{
-           const result = await userLogin(email, password);
-           console.log(result.user);
-           toast.success("Signin Sucessfull");
-            navigate(from, {replace : true});
-        } catch (error){
-            console.log(error);
-            toast.error(error?.message);
-        }
+    try {
+      const result = await userLogin(email, password);
+      console.log(result.user);
+      const { data } = await axios.post(
+        "http://localhost:5000/jwt",
+        { email: result?.user?.email },
+        { withCredentials: true }
+      );
+      toast.success("Signin Sucessfull");
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.message);
     }
-
-    
+  };
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
@@ -54,23 +63,21 @@ const Login = () => {
           style={{
             backgroundImage: `url(${login})`,
           }}
-        >
-        </div>
+        ></div>
 
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
           <div className="flex justify-center mx-auto">
-            <img
-              className="w-auto h-7 sm:h-8"
-              src={logo}
-              alt=""
-            />
+            <img className="w-auto h-7 sm:h-8" src={logo} alt="" />
           </div>
 
           <p className="mt-3 text-xl text-center text-gray-600 ">
             Welcome back!
           </p>
 
-          <div onClick={handleGoogleLogin} className="flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 ">
+          <div
+            onClick={handleGoogleLogin}
+            className="flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 "
+          >
             <div className="px-4 py-2">
               <svg className="w-6 h-6" viewBox="0 0 40 40">
                 <path
