@@ -1,8 +1,8 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { FaEdit } from "react-icons/fa";
 
 const BlogsDetails = () => {
   const { user } = useAuth();
@@ -13,22 +13,28 @@ const BlogsDetails = () => {
 
   const handleFormSubmission = async (e) => {
     e.preventDefault();
-    if (user?.email === buyer?.email)
-      return toast.error("Action not permitted!");
+    if (user?.email === blog?.owner?.email) {
+      return console.log("Action not permitted!");
+    }
+
+    //   return toast.error("Action not permitted!");
     const comment = e.target.comment.value;
-    const blogData = {
+    const commentData = {
       comment,
-    //   job_title,
-    //   photo,
-    //   category,
-    //   buyer,
+      //   reader: {
+      //     name: user?.displayName,
+      //     photo: user?.photoURL,
+      // }
     };
-    // console.table(bidData);
+    // console.table(commentData);
 
     try {
-      const { data } = await axios.post("http://localhost:5000/blogs", blogData);
+      const { data } = await axios.post(
+        "http://localhost:5000/comments",
+        commentData
+      );
       toast.success("Successfully Saved in DB");
-      console.log(data);
+      console.log(data, "successfull");
     } catch (error) {
       console.log(error);
       toast.error(error?.message);
@@ -67,13 +73,16 @@ const BlogsDetails = () => {
                 {blog.short_description}
               </span>
             </p>
-            <p className="mt-3 text-sm text-gray-400 md:text-sm">
+            <p className="my-3 text-sm text-gray-400 md:text-sm">
               Long Description:{" "}
               <span className="text-gray-600 hover:text-violet-400">
                 {blog.long_description}
               </span>
             </p>
-
+            {
+                (user?.email === blog?.owner?.email) ?  <Link to='/my-blog'><FaEdit className="text-xl text-violet-400 hover:text-violet-600"/></Link>  : ' '
+            }
+            
             <div className="flex items-center mt-6">
               <form onSubmit={handleFormSubmission}>
                 <div className="flex flex-col gap-2 mt-4">
@@ -100,7 +109,7 @@ const BlogsDetails = () => {
                     ></textarea>
                   </div>
                 </div>
-                <div className="flex justify-end mt-2">
+                <div className="flex justify-start mt-2 gap-3">
                   <button className="px-4 py-2 rounded text-sm font-medium transition-colors duration-200 sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110">
                     Comment
                   </button>
