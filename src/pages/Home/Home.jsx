@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import TabCategory from "./TabCategory";
 import BlogCard from "./BlogCard";
 import Newsletter from "./Newsletter";
+import AwesomeComponent from "./AwesomeComponent";
 
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
             </div>
             <TabCategory blogs={blogs}></TabCategory>
             <Newsletter></Newsletter>
+            <AwesomeComponent></AwesomeComponent>
         </div>
     );
 };

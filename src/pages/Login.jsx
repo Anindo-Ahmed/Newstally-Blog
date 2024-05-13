@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/image/logo.jpeg";
 import login from "../assets/image/login.jpg";
 import { AuthContext } from "../Provider/AuthProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { linkWithCredential } from "firebase/auth";
@@ -11,6 +11,7 @@ const Login = () => {
   const { user, userLogin, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const [logInError, setLogInError] = useState(" ");
   const from = location.state || "/";
   // Google login
   const handleGoogleLogin = async () => {
@@ -36,7 +37,10 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-
+    if(password !== user?.email) {
+      console.log("Please insert correct password")
+      setLogInError("Please insert correct password")
+    }
     const newUser = { email, password };
 
     try {
@@ -147,6 +151,9 @@ const Login = () => {
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
                 type="password"
               />
+              {logInError && (
+              <p className="text-red-400 text-center">{logInError}</p>
+            )}
             </div>
             <div className="mt-6">
               <button
