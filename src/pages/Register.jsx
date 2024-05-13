@@ -1,15 +1,16 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/image/logo.jpeg";
 import registerImg from "../assets/image/register.jpg";
-import { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
-import { toast } from "react-hot-toast";
+import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 
 
 const Register = () => {
     const {user, setUser, createUser, googleLogin, updateUserProfile} = useContext(AuthContext);
+    const [registerError, setRegisterError] = useState(" ");
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state || '/'
@@ -41,6 +42,24 @@ const Register = () => {
 
         const newUser = {name, photo, email, password};
         console.log(newUser);
+
+        if (password.length < 6) {
+          console.log("Please insert minimum 6 characters");
+          setRegisterError('Please insert minimum 6 characters')
+          return;
+        } else if (!/[0-9]/.test(password)) {
+          setRegisterError('Please insert number')
+          console.log("Please insert number");
+          return;
+        } else if (!/[@#$%&]/.test(password)) {
+          setRegisterError('Please insert special character @,#,$,%,&')
+          console.log("Please insert special character @,#,$,%,&");
+          return;
+        } else if (!/[A-Z]/.test(password)) {
+          setRegisterError('Please insert Upper case')
+          console.log("Please insert Upper case");
+          return;
+        }
 
         try{
             const result = await createUser(email, password);
@@ -175,6 +194,9 @@ const Register = () => {
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
                 type="password"
               />
+              {registerError && (
+              <p className="text-red-400 text-center">{registerError}</p>
+            )}
             </div>
             <div className="mt-6">
               <button

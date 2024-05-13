@@ -26,7 +26,6 @@ const UpdateBlog = () => {
                 photo: user?.photoURL,
             }};
         console.log(blogData)
-
         try{
             const {data} = await axios.put(`http://localhost:5000/blogs/${_id}`, blogData 
             )
@@ -36,7 +35,6 @@ const UpdateBlog = () => {
             console.log(error);
             toast.error(error.message)
         }
-
     }
   return (
     <div
@@ -59,7 +57,7 @@ const UpdateBlog = () => {
               <input
                 id="blog_title"
                 name="blog_title"
-                defaultValue={title}
+                autoComplete={title}
                 type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />

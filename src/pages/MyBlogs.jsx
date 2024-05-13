@@ -18,7 +18,7 @@ const MyBlogs = () => {
     queryFn: () => getData(),
     queryKey: [ 'blog', 'user?.email']
   })
-  console.log(isLoading)
+  // console.log(isLoading)
   // useEffect(() => {
   //   getData();
   // }, []);
