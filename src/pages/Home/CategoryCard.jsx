@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const CategoryCard = ({ blog }) => {
   const { user } = useContext(AuthContext);
-  const { title, category, photo, short_description, long_description } = blog;
+  const { _id, title, category, photo, short_description, long_description } = blog;
 
   const handleAddToWishList = () => {
     const wishListData = {
@@ -53,9 +53,9 @@ const CategoryCard = ({ blog }) => {
 
             <div className="flex items-center justify-center my-4 mb-8">
               <div className="flex overflow-hidden bg-white border divide-x rounded-lg rtl:flex-row-reverse ">
-                <button className="px-4 py-2 text-sm font-medium transition-colors duration-200 sm:text-base sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110">
+                <Link to={`/blogs/${_id}`} className="px-4 py-2 text-sm font-medium transition-colors duration-200 sm:text-base sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110">
                   Details
-                </button>
+                </Link>
                 <Link to="/wishlist-blog">
                   <button
                     onClick={handleAddToWishList}

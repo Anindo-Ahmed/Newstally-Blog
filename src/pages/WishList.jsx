@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -66,9 +66,9 @@ const WishList = () => {
 
                 <div className="flex items-center justify-center my-4 mb-8">
                   <div className="flex overflow-hidden bg-white border divide-x rounded-lg rtl:flex-row-reverse ">
-                    <button className="px-4 py-2 text-sm font-medium transition-colors duration-200 sm:text-base sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110">
+                    <Link to={`/blogs/${wishList._id}`} className="px-4 py-2 text-sm font-medium transition-colors duration-200 sm:text-base sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110">
                       Details
-                    </button>
+                    </Link>
                     <button
                       onClick={() => handleDelete(wishList._id)}
                       className="px-4 py-2 text-sm font-medium transition-colors duration-200 sm:text-base sm:px-6 text-white bg-gradient-to-r from-violet-400 to-fuchsia-400 hover:scale-110"
