@@ -5,7 +5,6 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import { linkWithCredential } from "firebase/auth";
 
 const Login = () => {
   const { user, userLogin, googleLogin } = useContext(AuthContext);

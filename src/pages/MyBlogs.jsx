@@ -35,6 +35,7 @@ const MyBlogs = () => {
   //   console.log(data);
   // };
   if(isLoading) return <p>Loading ...</p>
+  
   return (
     <section className="container px-4 mx-auto pt-12 my-12">
       <div className="flex items-center gap-x-3">

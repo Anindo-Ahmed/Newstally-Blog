@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const AwesomeComponent = () => {
   return (
     <section className="bg-white dark:bg-gray-200 my-20">
@@ -10,14 +12,14 @@ const AwesomeComponent = () => {
               </h1>
 
               <div className="mt-2">
-                <span className="inline-block w-40 h-1 bg-blue-500 rounded-full"></span>
-                <span className="inline-block w-3 h-1 ml-1 bg-blue-500 rounded-full"></span>
-                <span className="inline-block w-1 h-1 ml-1 bg-blue-500 rounded-full"></span>
+                <span className="inline-block w-40 h-1 bg-violet-500 rounded-full"></span>
+                <span className="inline-block w-3 h-1 ml-1 bg-violet-500 rounded-full"></span>
+                <span className="inline-block w-1 h-1 ml-1 bg-violet-500 rounded-full"></span>
               </div>
             </div>
 
             <div className="md:flex md:items-start md:-mx-4">
-              <span className="inline-block p-2 text-blue-500 bg-blue-100 rounded-xl md:mx-4 dark:text-white dark:bg-blue-500">
+              <span className="inline-block p-2 text-violet-500 bg-violet-100 rounded-xl md:mx-4 dark:text-white dark:bg-violet-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
@@ -40,13 +42,17 @@ const AwesomeComponent = () => {
                 </h1>
 
                 <p className="mt-3 text-gray-500 ">
-                Determine whether the use of the content in question falls under fair use or whether proper attribution was given. Fair use allows for the limited use of copyrighted material without permission from the copyright holder under certain circumstances, such as criticism, commentary
+                  Determine whether the use of the content in question falls
+                  under fair use or whether proper attribution was given. Fair
+                  use allows for the limited use of copyrighted material without
+                  permission from the copyright holder under certain
+                  circumstances, such as criticism, commentary
                 </p>
               </div>
             </div>
 
             <div className="md:flex md:items-start md:-mx-4">
-              <span className="inline-block p-2 text-blue-500 bg-blue-100 rounded-xl md:mx-4 dark:text-white dark:bg-blue-500">
+              <span className="inline-block p-2 text-violet-500 bg-violet-100 rounded-xl md:mx-4 dark:text-white dark:bg-violet-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
@@ -69,13 +75,15 @@ const AwesomeComponent = () => {
                 </h1>
 
                 <p className="mt-3 text-gray-500 ">
-                Look at the original post from which the content is alleged to have been copied. Compare the wording, structure, and overall content of both the original post and the content in question.
+                  Look at the original post from which the content is alleged to
+                  have been copied. Compare the wording, structure, and overall
+                  content of both the original post and the content in question.
                 </p>
               </div>
             </div>
 
             <div className="md:flex md:items-start md:-mx-4">
-              <span className="inline-block p-2 text-blue-500 bg-blue-100 rounded-xl md:mx-4 dark:text-white dark:bg-blue-500">
+              <span className="inline-block p-2 text-violet-500 bg-violet-100 rounded-xl md:mx-4 dark:text-white dark:bg-violet-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
@@ -100,21 +108,36 @@ const AwesomeComponent = () => {
 
               <div className="mt-4 md:mx-4 md:mt-0">
                 <h1 className="text-xl font-semibold text-gray-700 capitalize ">
-                Review the Allegation
+                  Review the Allegation
                 </h1>
 
                 <p className="mt-3 text-gray-500 ">
-                Start by carefully reviewing the claim made by the individual who is alleging the copy-paste. Understand the specific content they are referring to and the context in which it was used.
+                  Start by carefully reviewing the claim made by the individual
+                  who is alleging the copy-paste. Understand the specific
+                  content they are referring to and the context in which it was
+                  used.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="hidden lg:flex lg:items-center lg:w-1/2 lg:justify-center">
-            <img
+            <motion.img
               className="w-[28rem] h-[28rem] object-cover xl:w-[34rem] xl:h-[34rem] rounded-full"
               src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=755&q=80"
               alt=""
+              animate={{
+                scale: [1, 1, 1, 1, 1],
+                rotate: [0, 0, 120, 180, 0],
+                borderRadius: ["0%", "0%", "50%", "50%", "0%"]
+              }}
+              transition={{
+                duration: 2,
+                ease: "easeInOut",
+                times: [0, 0.2, 0.5, 0.8, 1],
+                repeat: Infinity,
+                repeatDelay: 1
+              }}
             />
           </div>
         </div>

@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useContext } from "react";
+import { motion } from "framer-motion";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
+import Skeleton from 'react-loading-skeleton';
 
 const CategoryCard = ({ blog }) => {
   const { user } = useContext(AuthContext);
@@ -27,10 +29,12 @@ const CategoryCard = ({ blog }) => {
     <section className="bg-white">
       <div className="container md:px-3 mx-auto">
         <div>
-          <img
+          <motion.img
             className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
             src={photo}
             alt=""
+            whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
           />
 
           <div className="mt-8">
@@ -48,7 +52,7 @@ const CategoryCard = ({ blog }) => {
             </h1>
 
             <p className="mt-2 text-gray-500 dark:text-gray-400">
-              {short_description}
+              {short_description || <Skeleton count={3} />}
             </p>
 
             <div className="flex items-center justify-center my-4 mb-8">

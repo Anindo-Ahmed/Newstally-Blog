@@ -10,7 +10,7 @@ const Home = () => {
     const blogs = useLoaderData()
     return (
         <div>
-            <Banner></Banner>
+            <Banner blogs={blogs}></Banner>
             <div className="container px-4 lg:px-20 mx-auto">
                 <h2 className="text-2xl font-semibold">Favourite Blogs</h2>
                 <hr className="border-b-violet-400 border-b-4 mb-3 w-1/6"/>

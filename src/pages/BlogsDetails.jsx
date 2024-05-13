@@ -1,5 +1,6 @@
 import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
@@ -49,10 +50,13 @@ const BlogsDetails = () => {
         </h1>
 
         <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
-          <img
+          
+          <motion.img
             className="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96"
             src={blog.photo}
             alt="photo"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           />
 
           <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
@@ -79,10 +83,14 @@ const BlogsDetails = () => {
                 {blog.long_description}
               </span>
             </p>
-            {
-                (user?.email === blog?.owner?.email) ?  <Link to='/my-blog'><FaEdit className="text-xl text-violet-400 hover:text-violet-600"/></Link>  : ' '
-            }
-            
+            {user?.email === blog?.owner?.email ? (
+              <Link to="/my-blog">
+                <FaEdit className="text-xl text-violet-400 hover:text-violet-600" />
+              </Link>
+            ) : (
+              " "
+            )}
+
             <div className="flex items-center mt-6">
               <form onSubmit={handleFormSubmission}>
                 <div className="flex flex-col gap-2 mt-4">
