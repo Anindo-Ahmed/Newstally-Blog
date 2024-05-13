@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/image/logo.jpeg"
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -6,18 +6,20 @@ import axios from "axios";
 
 const Navbar = () => {
     const {user, logOut} = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const handleLogOut = async () => {
         try{
             await logOut();
             await axios ('http://localhost:5000/logout', {withCredentials: true})
+            navigate('/')
         } catch (error){
             console.log(error);
         }
       }
 
     return (
-      <div className='navbar bg-base-100 shadow-sm container px-20 mx-auto'>
+      <div className='navbar bg-base-100 shadow-sm container lg:px-20 mx-auto'>
         <div className='flex-1'>
           <div className='flex gap-2 items-center'>
             <img className='w-auto h-9' src={logo} alt='' />

@@ -8,7 +8,7 @@ const TabCategory = ({blogs}) => {
     <Tabs className="text-start my-28 lg:px-20 mx-auto">
       <div className="container px-4 lg:px-20 mx-auto">
         <h2 className="text-2xl md:text-4xl font-lato font-semibold text-gray-800 mt-12">
-          Latest Posts
+          Latest Blogs
         </h2>
         <hr className="border-b-violet-400 border-b-4 my-3 w-1/6"/>
         <div className="flex justify-start items-center my-5 mx-auto">

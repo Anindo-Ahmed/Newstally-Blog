@@ -1,4 +1,5 @@
-import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
+
 
 const Newsletter = () => {
 
@@ -6,7 +7,13 @@ const Newsletter = () => {
         e.preventDefault()
         const email = e.target.email.value;
         console.log(email,'Successfull')
-        toast.success("Thank you for subscribing to our newsletter")
+        if(email){
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Thank you for subscribing to our newsletter!",
+          });
+        }
     }
     
   return (
