@@ -14,7 +14,7 @@ const WishList = () => {
 
   const getData = async () => {
     const { data } = await axios(
-      `http://localhost:5000/wishlist-blog/${user?.email}`
+      `https://newstally-server.vercel.app/wishlist-blog/${user?.email}`
     );
     setWishListData(data);
     // console.log(data);
@@ -24,7 +24,7 @@ const WishList = () => {
   const handleDelete = async (id) => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:5000/wishlist-blog/${id}`
+        `https://newstally-server.vercel.app/wishlist-blog/${id}`
       );
       console.log(data, "Successfully Deleted");
       toast.success("Successfully Deleted");

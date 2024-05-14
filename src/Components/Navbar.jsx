@@ -11,7 +11,7 @@ const Navbar = () => {
     const handleLogOut = async () => {
         try{
             await logOut();
-            await axios ('http://localhost:5000/logout', {withCredentials: true})
+            await axios ('https://newstally-server.vercel.app/logout', {withCredentials: true})
             navigate('/')
         } catch (error){
             console.log(error);

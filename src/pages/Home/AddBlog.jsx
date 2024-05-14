@@ -26,7 +26,7 @@ const AddBlog = () => {
         console.log(blogData)
 
         try{
-            const {data} = await axios.post('http://localhost:5000/blogs', blogData)
+            const {data} = await axios.post('https://newstally-server.vercel.app/blogs', blogData)
             console.log(data)
             toast.success('Successfully added')
             navigate('/')

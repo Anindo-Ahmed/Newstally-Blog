@@ -9,7 +9,7 @@ const UpdateBlog = () => {
     const {user} = useContext(AuthContext);
     const blog = useLoaderData();
     const {_id, title, category, photo, short_description, long_description} = blog || {};
-  console.log(blog)
+  // console.log(blog)
     const handleFormSubmission = async e => {
         e.preventDefault()
         const form = e.target;
@@ -25,11 +25,11 @@ const UpdateBlog = () => {
                 name: user?.displayName,
                 photo: user?.photoURL,
             }};
-        console.log(blogData)
+        // console.log(blogData)
         try{
-            const {data} = await axios.put(`http://localhost:5000/blogs/${_id}`, blogData 
+            const {data} = await axios.put(`https://newstally-server.vercel.app/blogs/${_id}`, blogData 
             )
-            console.log(data)
+            // console.log(data)
             toast.success('Successfully added')
         }catch (error) {
             console.log(error);

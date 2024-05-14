@@ -7,7 +7,7 @@ const DataTables = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/blogs")
+      .get("https://newstally-server.vercel.app/blogs")
       .then((res) => {
         const blogsData = res.data;
 

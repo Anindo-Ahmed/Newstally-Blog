@@ -20,7 +20,7 @@ const CategoryCard = ({ blog }) => {
     };
 
     axios
-      .post("http://localhost:5000/wishlist-blog", wishListData)
+      .post("https://newstally-server.vercel.app/wishlist-blog", wishListData)
       .then((res) => console.log("Blog added to wishlist", res.data))
       .catch((error) => console.log(error.message));
   };

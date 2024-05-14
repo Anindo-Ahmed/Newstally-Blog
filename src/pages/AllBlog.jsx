@@ -11,7 +11,7 @@ const AllBlog = () => {
   const { title, category, photo, short_description, long_description } = blogs;
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/all-blogs?filter=${filter}&search=${search}`)
+      .get(`https://newstally-server.vercel.app/all-blogs?filter=${filter}&search=${search}`)
       .then((res) => {
         const blogsData = res.data;
         setBlogs(blogsData);

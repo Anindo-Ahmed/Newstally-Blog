@@ -18,7 +18,7 @@ const Login = () => {
       const result = await googleLogin();
       console.log(result.user);
       const { data } = await axios.post(
-        "http://localhost:5000/jwt",
+        "https://newstally-server.vercel.app/jwt",
         { email: result?.user?.email },
         { withCredentials: true }
       );
@@ -46,7 +46,7 @@ const Login = () => {
       const result = await userLogin(email, password);
       console.log(result.user);
       const { data } = await axios.post(
-        "http://localhost:5000/jwt",
+        "https://newstally-server.vercel.app/jwt",
         { email: result?.user?.email },
         { withCredentials: true }
       );

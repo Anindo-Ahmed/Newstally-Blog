@@ -10,7 +10,7 @@ const AllBlogs = () => {
   const { title, category, photo, short_description, long_description } = blogs;
   useEffect(() => {
     axios
-      .get("http://localhost:5000/blogs")
+      .get("https://newstally-server.vercel.app/blogs")
       .then((res) => {
         const blogsData = res.data;
         console.log(blogsData);
@@ -32,7 +32,7 @@ const AllBlogs = () => {
     console.log(wishListData)
 
     axios
-      .post("http://localhost:5000/wishlist-blog", wishListData)
+      .post("https://newstally-server.vercel.app/wishlist-blog", wishListData)
       .then((res) => console.log("Blog added to wishlist", res.data))
       .catch((error) => console.log(error.message));
   };

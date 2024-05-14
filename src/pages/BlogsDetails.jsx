@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const BlogsDetails = () => {
   const { user } = useAuth();
@@ -15,31 +16,35 @@ const BlogsDetails = () => {
   const handleFormSubmission = async (e) => {
     e.preventDefault();
     if (user?.email === blog?.owner?.email) {
-      return console.log("Action not permitted!");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Can not comment on own blog!",
+      });
+      return ;
     }
 
     //   return toast.error("Action not permitted!");
     const comment = e.target.comment.value;
     const commentData = {
       comment,
-      //   reader: {
-      //     name: user?.displayName,
-      //     photo: user?.photoURL,
-      // }
+        commentor: {
+          name: user?.displayName,
+          photo: user?.photoURL,
+      }
     };
     // console.table(commentData);
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/comments",
+        "https://newstally-server.vercel.app/comments",
         commentData
       );
-      toast.success("Successfully Saved in DB");
-      console.log(data, "successfull");
+      // console.log(data, "successfull");
     } catch (error) {
-      console.log(error);
-      toast.error(error?.message);
+      console.log(error.message);
     }
+    
   };
 
   return (
@@ -84,7 +89,7 @@ const BlogsDetails = () => {
               </span>
             </p>
             {user?.email === blog?.owner?.email ? (
-              <Link to="/my-blog">
+              <Link to={`/update/${blog._id}`}>
                 <FaEdit className="text-xl text-violet-400 hover:text-violet-600" />
               </Link>
             ) : (
@@ -99,7 +104,8 @@ const BlogsDetails = () => {
                   </label>
 
                   <div>
-                    <div className="flex flex-row items-center">
+                    {
+                      user && <div className="flex flex-row items-center">
                       <img
                         className="object-cover object-center w-10 h-10 rounded-full"
                         src={blog?.owner?.photo}
@@ -109,6 +115,7 @@ const BlogsDetails = () => {
                         {blog?.owner?.name}
                       </h1>
                     </div>
+                    }
                     <textarea
                       className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                       name="comment"

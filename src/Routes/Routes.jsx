@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         {
           path: "/",
           element: <Home></Home>,
-          loader:() => fetch('http://localhost:5000/blogs')
+          loader:() => fetch('https://newstally-server.vercel.app/blogs')
         },
         {
           path: '/login',
@@ -49,18 +49,18 @@ const router = createBrowserRouter([
         {
           path: '/update/:id',
           element: <UpdateBlog></UpdateBlog>,
-          // loader: ({params}) => fetch(`http://localhost:5000/blog/${params.id}`)
-          loader:() => fetch('http://localhost:5000/blogs')
+          // loader: ({params}) => fetch(`https://newstally-server.vercel.app/blog/${params.id}`)
+          loader:() => fetch('https://newstally-server.vercel.app/blogs')
         },
         {
           path: '/blogs/:id',
           element: <BlogsDetails></BlogsDetails>,
-          loader:() => fetch('http://localhost:5000/blogs')
+          loader:() => fetch('https://newstally-server.vercel.app/blogs')
         },
         {
           path: '/featured-blog',
           element: <FeaturedBlog></FeaturedBlog>,
-          loader:() => fetch('http://localhost:5000/blogs')
+          loader:() => fetch('https://newstally-server.vercel.app/blogs')
         },
         {
           path: '/wishlist-blog',
