@@ -6,13 +6,13 @@ const Newsletter = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const email = e.target.email.value;
-        console.log(email,'Successfull')
         if(email){
           Swal.fire({
             icon: "success",
             title: "Success",
             text: "Thank you for subscribing to our newsletter!",
           });
+          e.target.reset()
         }
     }
     

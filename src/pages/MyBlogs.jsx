@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { data } from "autoprefixer";
 import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
+import Skeleton from "react-loading-skeleton";
 
 const MyBlogs = () => {
   const { user } = useAuth();

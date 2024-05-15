@@ -49,12 +49,13 @@ const router = createBrowserRouter([
         {
           path: '/update/:id',
           element: <UpdateBlog></UpdateBlog>,
-          // loader: ({params}) => fetch(`https://newstally-server.vercel.app/blog/${params.id}`)
-          loader:() => fetch('https://newstally-server.vercel.app/blogs')
+          loader: ({params}) => fetch(`https://newstally-server.vercel.app/blogs/${params.id}`)
+          // loader:() => fetch('https://newstally-server.vercel.app/blogs')
         },
         {
           path: '/blogs/:id',
           element: <BlogsDetails></BlogsDetails>,
+          // loader: ({params}) => fetch(`https://newstally-server.vercel.app/blog/${params.id}`)
           loader:() => fetch('https://newstally-server.vercel.app/blogs')
         },
         {

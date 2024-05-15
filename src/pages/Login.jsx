@@ -5,6 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { user, userLogin, googleLogin } = useContext(AuthContext);
@@ -23,6 +24,13 @@ const Login = () => {
         { withCredentials: true }
       );
       toast.success("Signin Successfull");
+      if(email){
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "LogIn Successfull!",
+        });
+      }
       navigate(from, { replace: true });
     } catch (error) {
       console.log(error);
@@ -49,6 +57,7 @@ const Login = () => {
         "https://newstally-server.vercel.app/jwt",
         { email: result?.user?.email },
         { withCredentials: true }
+
       );
       toast.success("Signin Sucessfull");
       navigate(from, { replace: true });
