@@ -2,7 +2,7 @@ import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 
@@ -12,6 +12,20 @@ const BlogsDetails = () => {
   const { id } = useParams();
 
   const blog = blogs.find((post) => post._id == id);
+
+  const {mutateAsync} =useMutation({
+    mutationFn:async () => {
+      const { data } = await axios.post(
+            "https://newstally-server.vercel.app/comments",
+            commentData
+          )
+          console.log(data)
+    },
+    onSuccess: () => {
+      console.log('Data is shwoing')
+    }
+  })
+
 
   const handleFormSubmission = async (e) => {
     e.preventDefault();
@@ -24,7 +38,6 @@ const BlogsDetails = () => {
       return ;
     }
 
-    //   return toast.error("Action not permitted!");
     const comment = e.target.comment.value;
     const commentData = {
       comment,
@@ -35,16 +48,16 @@ const BlogsDetails = () => {
     };
     // console.table(commentData);
 
-    try {
-      const { data } = await axios.post(
-        "https://newstally-server.vercel.app/comments",
-        commentData
-      );
-      // console.log(data, "successfull");
-    } catch (error) {
-      console.log(error.message);
-    }
-    
+    // try {
+    //   const { data } = await axios.post(
+    //     "https://newstally-server.vercel.app/comments",
+    //     commentData
+    //   );
+    //   // console.log(data, "successfull");
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
+    await mutateAsync();
   };
 
   return (

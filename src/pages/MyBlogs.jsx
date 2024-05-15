@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { data } from "autoprefixer";
 import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
-import Skeleton from "react-loading-skeleton";
+
 
 const MyBlogs = () => {
   const { user } = useAuth();
@@ -17,10 +17,6 @@ const MyBlogs = () => {
     queryFn: () => getData(),
     queryKey: [ 'blog', 'user?.email']
   })
-  // console.log(isLoading)
-  // useEffect(() => {
-  //   getData();
-  // }, []);
 
   const getData = async () => {
     const { data } = await axios(`https://newstally-server.vercel.app/blog/${user?.email}`,

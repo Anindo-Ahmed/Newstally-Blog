@@ -3,21 +3,28 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
 
 const WishList = () => {
   const { user } = useContext(AuthContext);
-  const [wishListData, setWishListData] = useState([]);
+  // const [wishListData, setWishListData] = useState([]);
 
-  useEffect(() => {
-    getData();
-  }, []);
+  const {
+    data: wishListData = [],
+    isLoading,
+    refetch
+  } = useQuery({
+    queryFn: () => getData(),
+    queryKey: [ 'wishList-blog', 'user?.email']
+  })
 
   const getData = async () => {
     const { data } = await axios(
       `https://newstally-server.vercel.app/wishlist-blog/${user?.email}`
     );
-    setWishListData(data);
+    // setWishListData(data);
     // console.log(data);
+    return data;
   };
   //   console.log(wishListData);
 

@@ -4,12 +4,26 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
 
 const UpdateBlog = () => {
     const {user} = useContext(AuthContext);
     const blog = useLoaderData();
     const {_id, title, category, photo, short_description, long_description} = blog || {};
     // console.log(blog)
+
+    const {mutateAsync} =useMutation({
+      mutationFn:async () => {
+        const { data } = await axios.put(
+          `https://newstally-server.vercel.app/blogs/${_id}`, blogData
+            )
+            console.log(data)
+      },
+      onSuccess: () => {
+        console.log('Data is updating')
+      }
+    })
+
     const handleFormSubmission = async e => {
         e.preventDefault()
         const form = e.target;
@@ -26,15 +40,16 @@ const UpdateBlog = () => {
                 photo: user?.photoURL,
             }};
         // console.log(blogData)
-        try{
-            const {data} = await axios.put(`https://newstally-server.vercel.app/blogs/${_id}`, blogData 
-            )
-            console.log(data)
-            e.target.reset()
-        }catch (error) {
-            console.log(error);
-            toast.error(error.message)
-        }  
+        // try{
+        //     const {data} = await axios.put(`https://newstally-server.vercel.app/blogs/${_id}`, blogData 
+        //     )
+        //     console.log(data)
+        //     e.target.reset()
+        // }catch (error) {
+        //     console.log(error);
+        //     // toast.error(error.message)
+        // }  
+        await mutateAsync();
     }
     
   return (
