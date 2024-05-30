@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const AwesomeComponent = () => {
   return (
-    <section className="bg-white dark:bg-gray-200 my-20">
+    <section className="bg-base-200 my-20">
       <div className="container px-6 py-10 mx-auto">
         <div className="lg:flex lg:items-center">
           <div className="w-full space-y-12 lg:w-1/2 ">
@@ -128,7 +128,6 @@ const AwesomeComponent = () => {
               alt=""
               animate={{
                 scale: [1, 1, 1, 1, 1],
-                rotate: [0, 0, 120, 180, 0],
                 borderRadius: ["0%", "0%", "50%", "50%", "0%"]
               }}
               transition={{
